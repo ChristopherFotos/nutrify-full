@@ -18,8 +18,6 @@ const SearchBar = (props) => {
   const [query, setQuery] = useState();
   const [isExpanded, toggleExpand] = useState(false);
 
-  let options = {};
-
   const handleClick = (e) => {
     e.preventDefault();
     //the line below calls the function and passes it the values from the input and the dropdown
@@ -73,24 +71,79 @@ const SearchBar = (props) => {
     let childArray = Array.from(
       document.getElementById("search-options-expand").children
     );
-    toggleExpand(!isExpanded);
-    document.getElementById("search-options-expand").style.height = "100%";
-    document.getElementById("search-options-expand").style.display = "block";
+
     childArray.forEach((elem) => {
-      elem.style.display = "inline-block";
+      elem.style.display = "none";
     });
+
+    toggleExpand(!isExpanded);
+
+    let elem = document.getElementById("search-options-expand");
+    let height = 0;
+    let targetValue = 300;
+    let increment = 56;
+    let friction = 0.82;
+
+    function slideDown(t) {
+      increment *= friction;
+      height += increment;
+
+      elem.style.height = height + "px";
+
+      let req = requestAnimationFrame(slideDown);
+
+      if (height > 250) {
+        console.log("conditional true");
+
+        childArray.forEach((elem) => {
+          elem.style.display = "block";
+          document.getElementById("search-options-expand").style.display =
+            "block";
+          document.getElementById("search-options-expand").style.height =
+            "100%";
+          cancelAnimationFrame(req);
+        });
+      }
+    }
+
+    slideDown();
+
+    document.getElementById("search-options-expand").style.display = "block";
   };
 
   const toggleOff = () => {
     let childArray = Array.from(
       document.getElementById("search-options-expand").children
     );
+
     toggleExpand(!isExpanded);
-    document.getElementById("search-options-expand").style.height = "0";
-    document.getElementById("search-options-expand").style.display = "none";
-    childArray.forEach((elem) => {
-      elem.style.display = "none";
-    });
+
+    let elem = document.getElementById("search-options-expand");
+    let height = 300;
+    let targetValue = 0;
+    let increment = -35;
+    let friction = 0.92;
+
+    function slideUp(t) {
+      height += increment;
+      increment *= friction;
+      elem.style.height = height + "px";
+
+      console.log("animating");
+
+      let req = requestAnimationFrame(slideUp);
+
+      if (height < 100) {
+        childArray.forEach((elem) => {
+          elem.style.display = "none";
+          document.getElementById("search-options-expand").style.display =
+            "none";
+          cancelAnimationFrame(req);
+        });
+      }
+    }
+
+    slideUp();
   };
 
   const renderOptions = () => {
