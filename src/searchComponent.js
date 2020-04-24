@@ -7,7 +7,14 @@ import anim from "./animations";
 
 const SearchBar = (props) => {
   const [input, setInput] = useState("");
-  const [searchOptions, setSearchOptions] = useState("");
+  const [searchOptions, setSearchOptions] = useState({
+    balanced: false,
+    lowCarb: false,
+    lowFat: false,
+    lowSodium: false,
+    highFiber: false,
+    highProtein: false,
+  });
   const [query, setQuery] = useState();
   const [isExpanded, toggleExpand] = useState(false);
 
@@ -16,8 +23,8 @@ const SearchBar = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
     //the line below calls the function and passes it the values from the input and the dropdown
-    props.onClick(input, options);
-    setQuery(input, options);
+    props.onClick(input, searchOptions);
+    setQuery(input, searchOptions);
   };
 
   const handleChange = (e) => {
@@ -26,30 +33,30 @@ const SearchBar = (props) => {
 
   const updateOptions = (e) => {
     e.target.name === "low carb"
-      ? (options.lowCarb = !options.lowCarb)
-      : (options.lowCarb = options.lowCarb);
+      ? (searchOptions.lowCarb = !searchOptions.lowCarb)
+      : (searchOptions.lowCarb = searchOptions.lowCarb);
 
     e.target.name === "low fat"
-      ? (options.lowFat = !options.lowFat)
-      : (options.lowFat = options.lowFat);
+      ? (searchOptions.lowFat = !searchOptions.lowFat)
+      : (searchOptions.lowFat = searchOptions.lowFat);
 
     e.target.name === "balanced"
-      ? (options.balanced = !options.balanced)
-      : (options.balanced = options.balanced);
+      ? (searchOptions.balanced = !searchOptions.balanced)
+      : (searchOptions.balanced = searchOptions.balanced);
 
     e.target.name === "high protein"
-      ? (options.highProtein = !options.highProtein)
-      : (options.highProtein = options.highProtein);
+      ? (searchOptions.highProtein = !searchOptions.highProtein)
+      : (searchOptions.highProtein = searchOptions.highProtein);
 
     e.target.name === "high fiber"
-      ? (options.highFiber = !options.highFiber)
-      : (options.highFiber = options.highFiber);
+      ? (searchOptions.highFiber = !searchOptions.highFiber)
+      : (searchOptions.highFiber = searchOptions.highFiber);
 
     e.target.name === "low sodium"
-      ? (options.lowSodium = !options.lowSodium)
-      : (options.lowSodium = options.lowSodium);
+      ? (searchOptions.lowSodium = !searchOptions.lowSodium)
+      : (searchOptions.lowSodium = searchOptions.lowSodium);
 
-    console.log(options);
+    console.log(searchOptions);
 
     const setQueryOnClick = (e) => {
       setQuery(e.target.value);
@@ -63,41 +70,24 @@ const SearchBar = (props) => {
   };
 
   const toggle = () => {
-    // console.log("top of method 1: ", isExpanded);
-    // toggleExpand(!isExpanded);
-    // console.log("middle of method 1: ", isExpanded);
-    // anim.slideHeight("search-options-expand", 30, 400, 0.9);
-    // console.log("end of method 1: ", isExpanded);
-    // console.log(
-    //   "style 1: ",
-    //   document.getElementById("search-options-expand").style
-    // );
     let childArray = Array.from(
       document.getElementById("search-options-expand").children
     );
     toggleExpand(!isExpanded);
     document.getElementById("search-options-expand").style.height = "100%";
+    document.getElementById("search-options-expand").style.display = "block";
     childArray.forEach((elem) => {
       elem.style.display = "inline-block";
     });
   };
 
   const toggleOff = () => {
-    // console.log("top of method 2: ", isExpanded);
-    // toggleExpand(!isExpanded);
-    // console.log("middle of method 2: ", isExpanded);
-    // anim.slideHeight("search-options-expand", -30, 0, 0.9);
-    // console.log("end of method 2: ", isExpanded);
-    // console.log(
-    //   "style 2: ",
-    //   document.getElementById("search-options-expand").style
-    // );
-
     let childArray = Array.from(
       document.getElementById("search-options-expand").children
     );
     toggleExpand(!isExpanded);
     document.getElementById("search-options-expand").style.height = "0";
+    document.getElementById("search-options-expand").style.display = "none";
     childArray.forEach((elem) => {
       elem.style.display = "none";
     });
