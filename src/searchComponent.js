@@ -93,15 +93,55 @@ const SearchBar = (props) => {
       let req = requestAnimationFrame(slideDown);
 
       if (height > 250) {
+        cancelAnimationFrame(req);
         console.log("conditional true");
+
+        let childArray = Array.from(
+          document.getElementById("search-options-expand").children
+        );
+
+        childArray.forEach((elem) => {
+          elem.style.opacity = "0";
+        });
+
+        let opacityValue = 0;
+        let opacityIncrement = 0.05;
+        let opacityFriction = 0.9;
+
+        function opacityFade() {
+          let childArray = Array.from(
+            document.getElementById("search-options-expand").children
+          );
+
+          // opacityIncrement *= opacityFriction;
+          opacityValue += opacityIncrement;
+
+          console.log(
+            "opacityFade",
+            opacityFriction,
+            opacityValue,
+            opacityIncrement
+          );
+
+          childArray.forEach((elem) => {
+            elem.style.opacity = toString(opacityValue);
+          });
+
+          let req2 = requestAnimationFrame(opacityFade);
+
+          if (opacityValue > 1) {
+            cancelAnimationFrame(req2);
+          }
+        }
+
+        opacityFade();
 
         childArray.forEach((elem) => {
           elem.style.display = "block";
-          document.getElementById("search-options-expand").style.display =
-            "block";
+          // document.getElementById("search-options-expand").style.display =
+          //   "block";
           document.getElementById("search-options-expand").style.height =
             "100%";
-          cancelAnimationFrame(req);
         });
       }
     }
