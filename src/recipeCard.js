@@ -12,13 +12,13 @@ const RecipeCard = (props) => {
       <div className="card-content">
         <span className="show-details show-details-open">Show details</span>
         <div className="card-content-closed">
-          <ul>
+          <ul style={{ display: "none" }}>
             {props.recipe.recipe.ingredientLines.map((ingredientLine) => {
               return <li>{ingredientLine}</li>;
             })}
           </ul>
-          <h4>A lovely heading</h4>
-          <p>
+          <h4 style={{ display: "none" }}>A lovely heading</h4>
+          <p style={{ display: "none" }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

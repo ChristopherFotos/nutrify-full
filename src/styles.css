@@ -387,6 +387,7 @@ checkbox transform into something approximating the shape in the logo. */
 
 .card-content-closed {
   height: 0;
+  /* display: none; */
   opacity: 0;
   transition: all 0.4s ease;
 }
