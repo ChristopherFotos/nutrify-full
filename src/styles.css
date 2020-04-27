@@ -6,13 +6,15 @@ body {
   position: relative;
   left: 15%;
   width: 70%;
-  display: grid;
+  /* display: grid; */
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
+  margin: none !important;
 }
 
 .recipe-card {
   border-radius: 30px !important;
+  /* width: 33.3%; */
   /* margin-right: 20%; */
   color: #a2a2a2;
   background-color: #3b3b3b !important;
@@ -22,9 +24,9 @@ body {
   height: minmax(300px, 800px);
 }
 
-.card-col {
+/* .card-col {
   margin: 200px;
-}
+} */
 
 .card-action {
   border-radius: 0px 0px 10px 10px !important;
@@ -122,15 +124,15 @@ input:focus {
 }
 
 #search-options-expand {
-  border: 2px solid #1ee56b;
-  background-color: #2a2a2a;
+  /* border: 2px solid #1ee56b; */
+  /* background-color: #2a2a2a;
   height: 0;
   border-radius: 16px;
   padding-left: 2%;
   color: #a0a0a0;
   top: 20%;
   width: 102%;
-  z-index: -1;
+  z-index: -1; */
 }
 
 .search-flexbox-span {
@@ -178,3 +180,197 @@ checkbox transform into something approximating the shape in the logo. */
   color: #1ee56b;
   font-weight: bold;
 }
+
+/* dropdown animation transition classes */
+
+.search-dropdown-closed {
+  height: 0 !important;
+  transition: all 0.5s ease;
+  border: 2px solid #1ee56b;
+  opacity: 0;
+  border-radius: 10px;
+}
+
+.search-dropdown-open {
+  display: block;
+  height: 320px;
+  border: 2px solid #1ee56b;
+  transition: all 0.5s ease;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+.search-option-heading-closed {
+  display: none;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.search-option-heading-open {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1ee56b;
+  display: block;
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+
+.search-option-checkbox-closed {
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.search-option-checkbox-open {
+  display: block;
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+
+/* *********************** NEW CARD CSS BEGINS****************************** */
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  margin-right: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1ee56b;
+  border-radius: 100px;
+}
+
+/* NEW CARD DESIGN BEGINS */
+
+.grid-card {
+  /* background: #3b3b3b; */
+  border-radius: 10px;
+  padding-top: 4px;
+  vertical-align: top;
+  height: 100%;
+  display: inline-block;
+  width: 30%;
+  margin: 1rem;
+}
+
+@media only screen and (max-width: 1856px) {
+  .grid-card {
+    width: 27%;
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  .grid-card {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 1056px) {
+  .grid-card {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+.card-img {
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+  border-radius: 1%;
+}
+
+.recipe-title {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1ee56b;
+  font-family: arial;
+  padding: 3%;
+}
+
+.show-details {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 0.76rem;
+}
+
+.show-details::before {
+  content: "";
+  margin-left: 4px;
+  margin-right: 3%;
+  margin-bottom: 4px;
+  text-align: center;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-bottom: 2px solid #1ee56b;
+  border-right: 2px solid #1ee56b;
+  transform: rotate(45deg);
+  transition: all 0.4s ease-in-out;
+}
+
+.show-details:hover::before {
+  content: "";
+  margin-left: 20px;
+  margin-right: 5px;
+  margin-bottom: 2px;
+  text-align: center;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-bottom: 2px solid #1ee56b;
+  border-right: 2px solid #1ee56b;
+  background-color: #1ee56b;
+  transform: rotate(405deg);
+  transition: all 0.4s ease-in-out;
+}
+
+.show-details:hover {
+  cursor: pointer;
+}
+
+.recipe-summary-div {
+  border-top: 1px solid rgba(190, 190, 190, 0.15);
+  color: #a2a2a2;
+  font-family: arial;
+  font-size: 0.74rem;
+  padding: 2% 30% 2% 2%;
+}
+
+.show-details {
+  padding: 3%;
+  font-family: Arial;
+  color: #a2a2a2;
+}
+
+.ingredient-li {
+  display: none;
+}
+
+.card-open {
+  height: 200px;
+}
+
+.card-content-open {
+  height: 100px;
+  opacity: 1;
+  padding-left: 3%;
+  color: #a2a2a2;
+  font-family: arial;
+  transition: all 0.4s ease;
+  overflow-y: scroll;
+}
+
+.card-content-closed {
+  height: 0;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+/* *********************** NEW CARD CSS ENDS****************************** */

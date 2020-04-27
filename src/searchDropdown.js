@@ -10,21 +10,21 @@ class SearchDropdown extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let optionBox = document.getElementById("search-options-expand");
-    optionBox.style.height = "0";
-    let childArray = Array.from(optionBox.children);
-    childArray.forEach((elem) => {
-      elem.style.display = "none";
-    });
-  }
+  //   componentDidMount() {
+  //     let optionBox = document.getElementById("search-options-expand");
+  //     optionBox.style.height = "0";
+  //     let childArray = Array.from(optionBox.children);
+  //     childArray.forEach((elem) => {
+  //       elem.style.display = "none";
+  //     });
+  //   }
 
   render() {
     return (
-      <div id="search-options-expand">
-        <p className="search-options-heading">diet options:</p>
+      <div id="search-options-expand" class="search-dropdown-closed">
+        <p className="search-option-heading-closed">diet options:</p>
 
-        <label className="diet-label">
+        <label className="search-option-heading-closed">
           <input
             type="checkbox"
             onChange={this.props.updateOptions}
@@ -33,7 +33,7 @@ class SearchDropdown extends React.Component {
           <span>Low carb</span>
         </label>
 
-        <label className="diet-label">
+        <label className="search-option-heading-closed">
           <input
             type="checkbox"
             onChange={this.props.updateOptions}
@@ -42,7 +42,7 @@ class SearchDropdown extends React.Component {
           <span>Low fat</span>
         </label>
 
-        <label className="diet-label">
+        <label className="search-option-heading-closed">
           <input
             type="checkbox"
             onChange={this.props.updateOptions}
@@ -51,7 +51,7 @@ class SearchDropdown extends React.Component {
           <span>Balanced</span>
         </label>
 
-        <label className="diet-label">
+        <label className="search-option-heading-closed">
           <input
             type="checkbox"
             onChange={this.props.updateOptions}
@@ -60,7 +60,7 @@ class SearchDropdown extends React.Component {
           <span>High protein</span>
         </label>
 
-        <label className="diet-label">
+        <label className="search-option-heading-closed">
           <input
             type="checkbox"
             onChange={this.props.updateOptions}
@@ -69,7 +69,7 @@ class SearchDropdown extends React.Component {
           <span>High fiber</span>
         </label>
 
-        <label className="diet-label">
+        <label className="search-option-heading-closed">
           <input
             type="checkbox"
             onChange={this.props.updateOptions}
@@ -78,8 +78,9 @@ class SearchDropdown extends React.Component {
           <span>Low sodium</span>
         </label>
         <p>
-          <p className="search-options-heading">nutrient options:</p>
+          <p className="search-option-heading-closed">nutrient options:</p>
           <input
+            className="search-option-heading-closed"
             placeholder="min calories"
             name="cal-from"
             type="text"

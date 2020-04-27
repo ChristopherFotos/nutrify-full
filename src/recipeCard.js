@@ -2,24 +2,23 @@ import React from "react";
 
 const RecipeCard = (props) => {
   return (
-    <div className="card recipe-card">
-      <div className="card-image recipe-img">
-        <img src={props.recipe.recipe.image} alt="the recipe" className></img>
-      </div>
-      <div>
-        <span className="card-title recipe-name">
-          {props.recipe.recipe.label}
-        </span>
-        <ul className="recipe-details">
+    <div className="grid-card">
+      <img
+        src={props.recipe.recipe.image}
+        className="card-img"
+        alt="the finished product"
+      />
+      <span className="recipe-title">{props.recipe.recipe.label}</span>
+      <div className="card-content">
+        <span className="show-details show-details-open">Show details</span>
+        <ul className="card-content-closed">
           {props.recipe.recipe.ingredientLines.map((ingredientLine) => {
             return <li>{ingredientLine}</li>;
           })}
         </ul>
-      </div>
-      <div className="card-action">
-        <a className="card-link" href="#">
-          This is a link
-        </a>
+        <div className="recipe-summary-div">
+          6 ingredients | Low carb | Low fat | Martha Stewart
+        </div>
       </div>
     </div>
   );

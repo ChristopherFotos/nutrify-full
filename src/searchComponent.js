@@ -55,95 +55,50 @@ const SearchBar = (props) => {
       : (searchOptions.lowSodium = searchOptions.lowSodium);
 
     console.log(searchOptions);
-
-    const setQueryOnClick = (e) => {
-      setQuery(e.target.value);
-    };
-  };
-
-  const renderSearchSummary = () => {
-    if (query) {
-      return <SearchSummary queries={input}></SearchSummary>;
-    } else return null;
   };
 
   const toggle = () => {
-    let childArray = Array.from(
-      document.getElementById("search-options-expand").children
-    );
+    toggleExpand(!isExpanded);
+    console.log("toggle");
+
+    let dropdown = document.getElementById("search-options-expand");
+
+    console.log("dropdown in toggle: ", dropdown);
+    console.log("classList in toggle: ", dropdown.classList);
+
+    dropdown.classList.remove("search-dropdown-closed");
+    dropdown.classList.add("search-dropdown-open");
+
+    console.log("classList in toggle, after change: ", dropdown.classList);
+
+    let childArray = Array.from(dropdown.children);
 
     childArray.forEach((elem) => {
-      elem.style.display = "none";
+      elem.classList.remove("search-option-heading-closed");
+      elem.classList.add("search-option-heading-open");
+      console.log("elements classList in toggle", elem.classList);
     });
-
-    toggleExpand(!isExpanded);
-
-    let elem = document.getElementById("search-options-expand");
-    let height = 0;
-    let targetValue = 300;
-    let increment = 56;
-    let friction = 0.82;
-
-    function slideDown(t) {
-      increment *= friction;
-      height += increment;
-
-      elem.style.height = height + "px";
-
-      let req = requestAnimationFrame(slideDown);
-
-      if (height > 250) {
-        console.log("conditional true");
-
-        childArray.forEach((elem) => {
-          elem.style.display = "block";
-          document.getElementById("search-options-expand").style.display =
-            "block";
-          document.getElementById("search-options-expand").style.height =
-            "100%";
-          cancelAnimationFrame(req);
-        });
-      }
-    }
-
-    slideDown();
-
-    document.getElementById("search-options-expand").style.display = "block";
   };
 
   const toggleOff = () => {
-    let childArray = Array.from(
-      document.getElementById("search-options-expand").children
-    );
-
     toggleExpand(!isExpanded);
+    console.log("toggleOff");
+    let dropdown = document.getElementById("search-options-expand");
+    console.log("dropdown in toggleOff: ", dropdown);
+    console.log("classList in toggleOff: ", dropdown.classList);
 
-    let elem = document.getElementById("search-options-expand");
-    let height = 300;
-    let targetValue = 0;
-    let increment = -35;
-    let friction = 0.92;
+    dropdown.classList.remove("search-dropdown-open");
+    dropdown.classList.add("search-dropdown-closed");
 
-    function slideUp(t) {
-      height += increment;
-      increment *= friction;
-      elem.style.height = height + "px";
+    console.log("classList in toggleOff, after change: ", dropdown.classList);
 
-      console.log("animating");
+    let childArray = Array.from(dropdown.children);
 
-      let req = requestAnimationFrame(slideUp);
-
-      if (height < 100) {
-        childArray.forEach((elem) => {
-          elem.style.display = "none";
-          document.getElementById("search-options-expand").style.display =
-            "none";
-          cancelAnimationFrame(req);
-        });
-      }
-    }
-
-    slideUp();
+    childArray.forEach((elem) => {
+      elem.classList.remove("search-option-heading-open");
+      elem.classList.add("search-option-heading-closed");
+      console.log("elements classList in toggleOff", elem.classList);
+    });
   };
 
   const renderOptions = () => {
