@@ -41,7 +41,15 @@ body {
   width: 70%;
   position: absolute;
   left: 15%;
-  top: ;
+}
+
+@media only screen and (max-width: 600px) {
+  .app-container {
+    width: 100%;
+    margin: none;
+    left: 0;
+    overflow-x: hidden;
+  }
 }
 
 .recipe-details {
@@ -251,23 +259,23 @@ checkbox transform into something approximating the shape in the logo. */
   vertical-align: top;
   height: 100%;
   display: inline-block;
-  width: 30%;
+  width: 25%;
   margin: 1rem;
 }
 
-@media only screen and (max-width: 1856px) {
+@media only screen and (min-width: 1620px) {
   .grid-card {
-    width: 27%;
+    width: 20%;
   }
 }
 
-@media only screen and (max-width: 1600px) {
+/* @media only screen and (min-width: 1221px) {
   .grid-card {
-    width: 45%;
+    width: 40%;
   }
-}
+} */
 
-@media only screen and (max-width: 1056px) {
+@media only screen and (max-width: 1220px) {
   .grid-card {
     width: 90%;
     margin: auto;
@@ -354,17 +362,27 @@ checkbox transform into something approximating the shape in the logo. */
 }
 
 .card-open {
-  height: 200px;
+  height: 280px;
 }
 
 .card-content-open {
-  height: 100px;
+  height: 200px;
   opacity: 1;
   padding-left: 3%;
   color: #a2a2a2;
   font-family: arial;
   transition: all 0.4s ease;
   overflow-y: scroll;
+}
+
+@media only screen and (max-width: 400px) {
+  .card-content-open {
+    height: 90vh;
+  }
+
+  .card-open {
+    height: 95vh;
+  }
 }
 
 .card-content-closed {
